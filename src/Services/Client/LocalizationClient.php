@@ -27,7 +27,7 @@ class LocalizationClient
     /**
      * @throws JsonException|GuzzleException
      */
-    final public function get(): array
+    final public function getAllTranslations(): array
     {
         //TODO:: Поправить. Сделать нормальную выборку.
         $query = [

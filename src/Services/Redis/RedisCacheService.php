@@ -12,18 +12,18 @@ class RedisCacheService
     {
         $this->redisClient = new Client([
             'scheme' => 'tcp',
-            'host'   => '10.0.0.1',
-            'port'   => 6379,
+            'host'   => RedisConfig::getHost(),
+            'port'   => RedisConfig::getPort(),
         ]);
     }
 
     final public function get(string $key): ?string
     {
-        return '123';
+        return $this->redisClient->get($key);
     }
 
-    final public function set(string $key): ?string
+    final public function set(string $key, string $message): ?string
     {
-        return '123';
+        return $this->redisClient->set($key, $message);
     }
 }

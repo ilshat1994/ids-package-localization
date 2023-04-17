@@ -2,7 +2,9 @@
 
 namespace Idsb2b\Localization\Messages;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Idsb2b\Localization\Services\Service;
+use JsonException;
 
 abstract class BaseMessage implements MessageInterface
 {
@@ -16,6 +18,10 @@ abstract class BaseMessage implements MessageInterface
         $this->service = new Service();
     }
 
+    /**
+     * @throws GuzzleException
+     * @throws JsonException
+     */
     final public function getMessage($attributes = []): string
     {
         $message = $this->service->getMessage($this->messageCode);

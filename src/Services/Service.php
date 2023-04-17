@@ -24,13 +24,35 @@ class Service
      */
     final public function getMessage(string $messageCode): string
     {
-        $message = $this->cacheService->get($messageCode);
-        var_dump($_ENV);
-        var_dump($message);
-        die();
-        $response = $this->localizationClient->get();
-        var_dump($response);
-        die();
-        return $messageCode;
+        //TODO:: Переделать под нормальынй ключ. Который получим из JWT токена.
+        $redisKey = 'product_id:1:fin:testParentt22:' . $messageCode;
+        $message = $this->cacheService->get($redisKey);
+
+        if (!$message) {
+            $translations = $this->localizationClient->getAllTranslations();
+            $this->addTranslationsInRedis($translations);
+            $message = $this->cacheService->get($redisKey);
+        }
+
+        return $message ?? $messageCode;
+    }
+
+    private function addTranslationsInRedis(array $translations): void
+    {
+        foreach ($translations['data'] as $product) {
+            $productId = 'product_id:' . $product['product_id'];
+
+            foreach ($product['translations'] as $language => $parents) {
+                $languageKey = $productId . ':' . $language;
+
+                foreach ($parents as $parent => $items) {
+                    $parentKey = $languageKey . ':' . $parent;
+                    foreach ($items as $key => $item) {
+                        $redisKey = $parentKey . ':' . $key;
+                        $this->cacheService->set($redisKey, $item);
+                    }
+                }
+            }
+        }
     }
 }
