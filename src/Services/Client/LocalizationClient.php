@@ -18,7 +18,6 @@ class LocalizationClient
         ];
 
         $this->client = new Client([
-            "base_uri" => LocalizationClientConfig::getBaseUrl(),
             "headers" => $headers,
             "timeout" => LocalizationClientConfig::getTimeout()
         ]);

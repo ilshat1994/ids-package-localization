@@ -11,7 +11,7 @@ class LocalizationClientConfig
 
     public static function getLocalizationUri(): string
     {
-        return '/api/translations/for-application';
+        return self::getBaseUrl() . '/api/translations/for-application';
     }
 
     public static function getTimeout(): int
