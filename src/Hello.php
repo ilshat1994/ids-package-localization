@@ -3,7 +3,7 @@
 namespace Idsb2b\Localization;
 
 
-use Idsb2b\Localization\Messages\Exceptions\ApplicationNotDeletedExceptionMessage;
+use Idsb2b\Localization\Messages\Exceptions\BackOffice\ApplicationNotDeletedExceptionMessage;
 use Idsb2b\Localization\Messages\TranslationMessages;
 
 class Hello

@@ -1,6 +1,6 @@
 <?php
 
-namespace Idsb2b\Localization\Messages\Exceptions;
+namespace Idsb2b\Localization\Messages\Exceptions\BackOffice;
 
 use Idsb2b\Localization\Messages\BaseMessage;
 
