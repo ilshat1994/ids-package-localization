@@ -1,6 +1,8 @@
 <?php
 
-namespace Idsb2b\Localization\Messages;
+namespace Idsb2b\Localization\Messages\Exceptions;
+
+use Idsb2b\Localization\Messages\BaseMessage;
 
 class ApplicationNotDeletedExceptionMessage extends BaseMessage
 {

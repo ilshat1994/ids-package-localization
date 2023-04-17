@@ -29,7 +29,7 @@ class LocalizationClient
      */
     final public function getAllTranslations(): array
     {
-        //TODO:: Поправить. Сделать нормальную выборку.
+        //TODO:: Поправить. Сделать нормальную выборку. Как то из запроса получить.
         $query = [
             'application' => 5,
             'parentType' => 'I'

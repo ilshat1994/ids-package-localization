@@ -44,4 +44,11 @@ abstract class BaseMessage implements MessageInterface
     {
         return $this->messageCode;
     }
+
+    final public function setMessageCode(string $code): self
+    {
+        $this->messageCode = $code;
+
+        return $this;
+    }
 }

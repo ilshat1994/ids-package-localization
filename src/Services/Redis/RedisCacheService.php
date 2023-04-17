@@ -22,8 +22,8 @@ class RedisCacheService
         return $this->redisClient->get($key);
     }
 
-    final public function set(string $key, string $message): ?string
+    final public function set(string $key, string $message): void
     {
-        return $this->redisClient->set($key, $message);
+        $this->redisClient->set($key, $message);
     }
 }

@@ -6,7 +6,7 @@ class RedisConfig
 {
     final public static function getHost(): string
     {
-        return !empty(getenv('REDIS_HOST')) ? getenv('REDIS_HOST') : 'localhost1212';
+        return !empty(getenv('REDIS_HOST')) ? getenv('REDIS_HOST') : 'localhost';
     }
 
     final public static function getPort(): string

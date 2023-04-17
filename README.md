@@ -9,6 +9,7 @@ composer require ids-b2b/localization
 ```
 REDIS_HOST=
 REDIS_PORT=
+LOCALIZATION_URL=http://localhost:8001
 ```
 
 
