@@ -24,8 +24,9 @@ class Service
      */
     final public function getMessage(string $messageCode): string
     {
+        $application = 'ap1';
         //TODO:: Переделать под нормальынй ключ. Который получим из JWT токена.
-        $redisKey = 'product_id:1:fin:testParentt22:' . $messageCode;
+        $redisKey = $application . ':product_id:1:fin:testParentt22:' . $messageCode;
         $message = $this->cacheService->get($redisKey);
 
         if (!$message) {
@@ -39,8 +40,10 @@ class Service
 
     private function addTranslationsInRedis(array $translations): void
     {
+        $application = 'ap1';
+
         foreach ($translations['data'] as $product) {
-            $productId = 'product_id:' . $product['product_id'];
+            $productId = $application . ':product_id:' . $product['product_id'];
 
             foreach ($product['translations'] as $language => $parents) {
                 $languageKey = $productId . ':' . $language;
