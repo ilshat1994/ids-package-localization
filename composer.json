@@ -1,5 +1,5 @@
 {
-  "name": "ids/localization",
+  "name": "ids-b2b/localization",
   "description": "Пакет для работы с локализатором",
   "license": "GPL-3.0-only",
   "authors": [
@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ids\\Localization\\": "src/"
+      "Idsb2b\\Localization\\": "src/"
     }
   }
 }

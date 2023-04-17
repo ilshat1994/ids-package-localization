@@ -1,6 +1,6 @@
 <?php
 
-namespace Ids\Localization\Client;
+namespace Idsb2b\Localization\Client;
 
 class Client
 {

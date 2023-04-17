@@ -1,6 +1,6 @@
 <?php
 
-namespace Ids\Localization;
+namespace Idsb2b\Localization;
 
 class Hello
 {
