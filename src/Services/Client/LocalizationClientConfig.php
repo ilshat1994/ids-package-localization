@@ -6,7 +6,7 @@ class LocalizationClientConfig
 {
     public static function getBaseUrl(): string
     {
-        return !empty(getenv('LOCALIZATION_URL')) ? getenv('REDIS_HOST') : 'http://localhost:8001';
+        return !empty(getenv('LOCALIZATION_URL')) ? getenv('LOCALIZATION_URL') : 'http://localhost:8001';
     }
 
     public static function getLocalizationUri(): string

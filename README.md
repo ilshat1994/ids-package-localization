@@ -7,9 +7,9 @@ composer require ids-b2b/localization
 
 Необходимо добавит в env файл
 ```
-REDIS_HOST=
-REDIS_PORT=
-LOCALIZATION_URL=http://localhost:8001
+LOCALIZATION_URL=
+REDIS_HOST_FOR_LOCALIZATION=
+REDIS_PORT_FOR_LOCALIZATION=
 ```
 
 
