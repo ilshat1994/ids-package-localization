@@ -1,0 +1,2 @@
+# Package localization
+composer dumpautoload
