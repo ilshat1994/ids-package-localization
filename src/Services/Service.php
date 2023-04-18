@@ -3,6 +3,7 @@
 namespace Idsb2b\Localization\Services;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Idsb2b\Localization\Config;
 use Idsb2b\Localization\Services\Client\LocalizationClient;
 use Idsb2b\Localization\Services\Redis\RedisCacheService;
 use JsonException;
@@ -22,40 +23,44 @@ class Service
      * @throws GuzzleException
      * @throws JsonException
      */
-    final public function getMessage(string $messageCode): string
+    final public function getMessage(string $messageCode, string $parentId): string
     {
-        $application = 'ap1';
-        //TODO:: Переделать под нормальынй ключ. Который получим из JWT токена.
-        $redisKey = $application . ':product_id:1:fin:testParentt22:' . $messageCode;
+        $application = '5';
+        $redisKey = $this->getRedisKey($messageCode, $parentId, 'rus', $application);
         $message = $this->cacheService->get($redisKey);
 
         if (!$message) {
-            $translations = $this->localizationClient->getAllTranslations();
-            $this->addTranslationsInRedis($translations);
+            $translations = $this->localizationClient->getAllTranslations($application);
+            $this->addTranslationsInRedis($translations, $application);
             $message = $this->cacheService->get($redisKey);
         }
 
         return $message ?? $messageCode;
     }
 
-    private function addTranslationsInRedis(array $translations): void
+    private function addTranslationsInRedis(array $translations, string $application): void
     {
-        $application = 'ap1';
-
         foreach ($translations['data'] as $product) {
-            $productId = $application . ':product_id:' . $product['product_id'];
-
             foreach ($product['translations'] as $language => $parents) {
-                $languageKey = $productId . ':' . $language;
-
                 foreach ($parents as $parent => $items) {
-                    $parentKey = $languageKey . ':' . $parent;
                     foreach ($items as $key => $item) {
-                        $redisKey = $parentKey . ':' . $key;
+                        $redisKey = $this->getRedisKey($key, $parent, $language, $application, $product['product_id']);
                         $this->cacheService->set($redisKey, $item);
                     }
                 }
             }
         }
+    }
+
+    private function getRedisKey(
+        string $messageCode,
+        string $parentId,
+        string $lang,
+        string $application,
+        string $productId = null
+    ): string {
+        $productKey = $productId ?? Config::getProductId();
+
+        return 'localization' . $application . $productKey . $lang . $parentId . $messageCode;
     }
 }

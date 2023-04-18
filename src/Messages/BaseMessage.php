@@ -10,6 +10,7 @@ abstract class BaseMessage implements MessageInterface
 {
     protected int $responseCode = 500;
     protected string $messageCode = '';
+    protected string $parentId = '';
 
     private Service $service;
 
@@ -24,7 +25,7 @@ abstract class BaseMessage implements MessageInterface
      */
     final public function getMessage($attributes = []): string
     {
-        $message = $this->service->getMessage($this->messageCode);
+        $message = $this->service->getMessage($this->messageCode, $this->parentId);
 
         return sprintf($message, ...$attributes);
     }
@@ -45,9 +46,16 @@ abstract class BaseMessage implements MessageInterface
         return $this->messageCode;
     }
 
-    final public function setMessageCode(string $code): self
+    final protected function setMessageCode(string $code): self
     {
         $this->messageCode = $code;
+
+        return $this;
+    }
+
+    final protected function setParentId(string $parentId): self
+    {
+        $this->parentId = $parentId;
 
         return $this;
     }

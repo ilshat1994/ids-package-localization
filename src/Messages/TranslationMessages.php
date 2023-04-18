@@ -12,9 +12,12 @@ class TranslationMessages extends BaseMessage
      * @throws JsonException
      * @throws JsonException
      */
-    final public static function get(string $messageCode, ...$attributes): string
+    final public static function get(string $messageCode, string $parentId, ...$attributes): string
     {
-        $message = (new self())->setMessageCode($messageCode)->getMessage($attributes);
+        $message = (new self())
+            ->setMessageCode($messageCode)
+            ->setParentId($parentId)
+            ->getMessage($attributes);
 
         return sprintf($message, ...$attributes);
     }

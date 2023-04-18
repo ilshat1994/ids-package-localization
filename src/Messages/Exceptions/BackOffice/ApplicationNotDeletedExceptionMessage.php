@@ -6,5 +6,6 @@ use Idsb2b\Localization\Messages\BaseMessage;
 
 class ApplicationNotDeletedExceptionMessage extends BaseMessage
 {
-    protected string $messageCode = 'GLB-00002';
+    protected string $messageCode = 'GLB-00001';
+    protected string $parentId = 'testParentt';
 }

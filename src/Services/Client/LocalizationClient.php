@@ -26,11 +26,10 @@ class LocalizationClient
     /**
      * @throws JsonException|GuzzleException
      */
-    final public function getAllTranslations(): array
+    final public function getAllTranslations(string $application): array
     {
-        //TODO:: Поправить. Сделать нормальную выборку. Как то из запроса получить.
         $query = [
-            'application' => 5,
+            'application' => $application,
             'parentType' => 'I'
         ];
 

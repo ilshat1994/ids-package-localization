@@ -11,7 +11,9 @@ class Hello
     public function __construct()
     {
         $ap = new ApplicationNotDeletedExceptionMessage();
-        echo TranslationMessages::get('GLB-00002');
+
+        echo TranslationMessages::get('GLB-00003', 'testParentt22');
+
         echo $ap->getMessage();
     }
 }
