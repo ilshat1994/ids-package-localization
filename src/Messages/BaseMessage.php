@@ -33,7 +33,7 @@ abstract class BaseMessage implements MessageInterface
     /**
      * @return int
      */
-    public function getResponseCode(): int
+    final public function getResponseCode(): int
     {
         return $this->responseCode;
     }
