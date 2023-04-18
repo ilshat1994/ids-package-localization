@@ -27,7 +27,7 @@ PRODUCT_ID_FOR_LOCALIZATION=
 ```php
 use Idsb2b\Localization\Messages\TranslationMessages
 
-$message = TranslationMessages::get('GLB-00002');
+$message = TranslationMessages::get('GLB-00003', 'testParentt22');
 
 var_dump($message);
 ```
