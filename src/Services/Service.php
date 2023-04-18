@@ -43,8 +43,14 @@ class Service
         foreach ($translations['data'] as $product) {
             foreach ($product['translations'] as $language => $parents) {
                 foreach ($parents as $parent => $items) {
-                    foreach ($items as $key => $item) {
-                        $redisKey = $this->getRedisKey($key, $parent, $language, $application, $product['product_id']);
+                    foreach ($items as $messageCode => $item) {
+                        $redisKey = $this->getRedisKey(
+                            $messageCode,
+                            $parent,
+                            $language,
+                            $application,
+                            $product['product_id']
+                        );
                         $this->cacheService->set($redisKey, $item);
                     }
                 }
