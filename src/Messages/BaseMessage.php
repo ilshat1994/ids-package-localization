@@ -4,7 +4,7 @@ namespace Idsb2b\Localization\Messages;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Idsb2b\Localization\Services\Service;
-use JsonException;
+use Psr\Cache\InvalidArgumentException;
 
 abstract class BaseMessage implements MessageInterface
 {
@@ -21,7 +21,7 @@ abstract class BaseMessage implements MessageInterface
 
     /**
      * @throws GuzzleException
-     * @throws JsonException
+     * @throws InvalidArgumentException|InvalidArgumentException
      */
     final public function getMessage($attributes = []): string
     {

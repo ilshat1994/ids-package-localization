@@ -3,14 +3,13 @@
 namespace Idsb2b\Localization\Messages;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JsonException;
+use Psr\Cache\InvalidArgumentException;
 
 class TranslationMessages extends BaseMessage
 {
     /**
      * @throws GuzzleException
-     * @throws JsonException
-     * @throws JsonException
+     * @throws InvalidArgumentException
      */
     final public static function get(string $messageCode, string $parentId, ...$attributes): string
     {

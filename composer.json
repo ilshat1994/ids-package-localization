@@ -11,7 +11,8 @@
   "require": {
     "php": ">=7.4",
     "guzzlehttp/guzzle": ">=7.0",
-    "predis/predis": "^2.1"
+    "predis/predis": "^2.1",
+    "idynsys/localizator": "dev-main"
   }
   ,
   "require-dev": {
