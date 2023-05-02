@@ -2,20 +2,80 @@
 
 namespace Idsb2b\Localization;
 
+use Idsb2b\Localization\Traits\SingletonTrait;
+
 class Config
 {
-    final public static function getProductId(): string
-    {
-        return !empty(getenv('PRODUCT_ID_FOR_LOCALIZATION')) ? getenv('PRODUCT_ID_FOR_LOCALIZATION') : '-1';
+    use SingletonTrait;
+
+    private int $productId;
+    private string $redisHost;
+    private int $redisPort;
+    private int $applicationId;
+    private string $localizationUrl;
+    private string $lang;
+
+    final public function build(
+        int $productId = -1,
+        string $redisHost = 'localhost',
+        int $redisPort = 6378,
+        int $applicationId = 5,
+        string $localizationUrl = 'http://localhost:8001',
+        string $lang = 'rus'
+    ): void {
+        $this->productId = $productId;
+        $this->redisHost = $redisHost;
+        $this->redisPort = $redisPort;
+        $this->applicationId = $applicationId;
+        $this->localizationUrl = $localizationUrl;
+        $this->lang = $lang;
     }
 
-    final public static function getRedisHost(): string
+    /**
+     * @return string
+     */
+    final public function getLang(): string
     {
-        return !empty(getenv('REDIS_HOST_FOR_LOCALIZATION')) ? getenv('REDIS_HOST_FOR_LOCALIZATION') : 'localhost';
+        return $this->lang;
     }
 
-    final public static function getRedisPort(): string
+    /**
+     * @return string
+     */
+    final public function getLocalizationUrl(): string
     {
-        return !empty(getenv('REDIS_PORT_FOR_LOCALIZATION')) ? getenv('REDIS_PORT_FOR_LOCALIZATION') : '6378';
+        return $this->localizationUrl;
+    }
+
+    /**
+     * @return int
+     */
+    final public function getApplicationId(): int
+    {
+        return $this->applicationId;
+    }
+
+    /**
+     * @return int
+     */
+    final public function getProductId(): int
+    {
+        return $this->productId;
+    }
+
+    /**
+     * @return string
+     */
+    final public function getRedisHost(): string
+    {
+        return $this->redisHost;
+    }
+
+    /**
+     * @return int
+     */
+    final public function getRedisPort(): int
+    {
+        return $this->redisPort;
     }
 }

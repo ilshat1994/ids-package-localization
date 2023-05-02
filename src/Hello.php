@@ -10,6 +10,8 @@ class Hello
 {
     public function __construct()
     {
+        Config::getInstance()->build();
+
         $ap = new ApplicationNotDeletedExceptionMessage();
 
         echo TranslationMessages::get('GLB-00003', 'testParentt22');
