@@ -26,11 +26,10 @@ class Service
         ]);
 
         $this->translator = TranslatorFactory::create(
-            -1,
             $this->config->getApplicationId(),
-            $this->config->getProductId(),
-            $this->config->getLocalizationUrl()
+            $this->config->getLang(),
         )
+            ->setLocalizatorUrl($this->config->getLocalizationUrl())
             ->setCache(new RedisAdapter($client))
             ->build();
     }
@@ -41,10 +40,10 @@ class Service
      */
     final public function getMessage(string $messageCode, string $parentId): string
     {
-        return $this->translator->setWarmCacheIfEmpty(true)->translate(
-            $this->config->getLang(),
+        return $this->translator->translateUi(
             $parentId,
-            $messageCode
+            $messageCode,
+            $this->config->getProductId()
         );
     }
 }
